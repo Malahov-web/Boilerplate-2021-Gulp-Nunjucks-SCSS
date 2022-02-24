@@ -1,0 +1,64 @@
+/*
+ * 1. Import url (form DNS)
+ * 2. Font-face mixin
+ * 3. Adding by Font-face
+ *
+*/
+
+
+// 1. Import url (form DNS)
+// 
+// placeholders:
+// @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700&subset=cyrillic');
+// @import '../fonts/social-icons/styles'; //
+
+
+
+
+
+// 2. Font-face mixin
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+    $src: null;
+
+    $extmods: (
+        eot: "?",
+        svg: "#" + str-replace($name, " ", "_")
+    );
+
+    $formats: (
+        otf: "opentype",
+        ttf: "truetype"
+    );
+
+    @each $ext in $exts {
+        $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+        $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+        $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+    }
+
+    @font-face {
+        font-family: quote($name);
+        font-style: $style;
+        font-weight: $weight;
+        src: $src;
+    }
+}
+
+
+// 3. Adding by Font-face
+
+// File structure for fonts: ./app/fonts/fontName/fileName.ttf; :
+// 
+// @include font-face(Lato, '../fonts/Lato/Lato-Regular', normal, normal, woff2 woff ttf svg); 
+// @include font-face(Lato, '../fonts/Lato/Lato-Medium', 500, normal, woff2 woff ttf svg); 
+// @include font-face(Lato, '../fonts/Lato/Lato-Medium', bold, normal, woff2 woff ttf svg); 
+
+// @include font-face(Samplino, fonts/Samplino); 
+@include font-face(myfont, fonts/myfont); 
+// @include font-face(SFUI-Text-Light, fonts/SFUI-Text-Light); 
+// @include font-face(SFUI-Text-Light, fonts/SFUI-Text-Bold); 
+// @include font-face(SFUI-Text-Light, fonts/SFUI-Text-Medium); 
+// @include font-face('social-icons', fonts/social-icons); 
+
+

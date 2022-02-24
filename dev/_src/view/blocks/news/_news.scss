@@ -1,0 +1,127 @@
+/* . news
+ * **********************************************************************
+ *
+*/
+
+/*
+ * Blocks vars
+ * Block and elements styles
+ * Other styles (Not block elems, but associated with it)
+ * Media rules - Mobile First, use min-width
+ * States
+ */
+
+// Block vars
+$blocknameItemPaddings: 20px;
+// $blocknameDecorBg: $globalColor;
+
+// Block and elements
+.news{
+
+    &__item{
+        width: 100%;
+        // @include height_leveling('fullheight');
+        // @extend %shadow_card;
+         
+        // TEST DEV: cut_corners()
+        position: relative;
+        background-color: $accent;
+        padding: 1em;
+        // @include cut_corners(30px, $white);
+
+        // @include crop_corners( ( ('left top', 10px, $white), ('right top', 20px, $white) ) );
+
+        // @include cuted_corners( ('left top', 10px, $white), ('right top', 20px, $white)  );
+        // @include cuted_corners( 10px, ('right top', 20px, $white)  );
+        // @include cuted_corners( 10px  );
+        
+
+        &-outer:nth-child(1) & {
+            // @include cut_corners(30px, $grey_light);
+        }
+        &-outer:nth-child(2) & {
+            // @include cuted_corners( ('left top', 10px, $grey_light), ('right top', 20px, $grey_light) );
+            // @include cuted_corners( ('right top', 30px, $grey_light), ('right top', 20px, $grey_light) );
+            @include cuted_corners( ('right top', 30px, $grey_light), ('right bottom', 20px, $grey_light) );
+        }
+        
+
+        &-image{
+            // margin-bottom:  1/2*$l_h_base;
+            // position: relative; 
+            // padding-bottom: 56%;
+            // overflow: hidden;
+            img{
+                // @include image_center_cover();
+            }
+        }
+
+        &-content {
+        //     @include h_rhytm('card', $fb);
+        //     padding-top: 1/2*$l_h_base;
+        //     padding-bottom: 1/2*$l_h_base;
+        }
+
+        &-title{
+            // @include font_size_pro('h4');
+            // @include height_leveling('heading');
+            // letter-spacing: $l_s;
+
+            a {
+                // color: $text;
+                &:hover {
+                    // color: $accent;
+                }
+            }
+        }
+        &-text{
+            // @include font_size_pro('base');
+            // @include height_leveling('text');
+            // @include v_rhytm('text', $l_h);
+        }
+        &-date{
+            // display: block; 
+            // @include font_size('small');
+            // @include font_size_pro('base');
+            // @include height_leveling('base');
+            // @include typo('date');
+            // color: $gray-base;
+            color: green;
+            
+
+        }
+    }
+
+    // Blocks Modificators
+    &--card &__item {
+        &-title {
+            // Ovverride rules
+        }
+    }
+
+    // Inheritance (for components)
+    .otherblock {
+        // Ovverride rules
+    }
+}
+
+// Not block elems, but associated with it
+.news-outer{
+
+}
+
+// Media rules - Mobile First, use min-width
+// @media ( min-width: $screen-sm-min ) {
+
+//     .blockname {
+//         // etc..
+//     }  
+// }
+
+// States  (Default, Active, and more by JS logic )
+// .blockname {
+//     display: none;
+// }
+// .blockname.active {
+//     display: none;
+// }

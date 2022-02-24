@@ -1,0 +1,62 @@
+/*
+ * Blocks vars
+ * Block and elements styles
+ * Other styles (Not block elems, but associated with it)
+ * Media rules - Mobile First, use min-width
+ * Default states
+ */
+
+// Block vars
+$blocknameItemPaddings: 20px;
+$blocknameDecorBg: $globalColor;
+
+// Block and elements
+.blockname {
+    padding: 10px;
+
+    &:hover {
+
+    }
+    // Block Elements    
+    &__item {
+        &-title {
+            // Default rules
+        }
+        &-text {
+
+        }
+        &-image {
+            img {  }
+        }
+    }
+
+    // Blocks Modificators
+    &--success &__item {
+        &-title {
+            // Ovverride rules
+        }
+    }
+
+    // Inheritance (for components)
+    .otherblock {
+        // Ovverride rules
+    }
+}
+
+// Not block elems, but associated with it
+.blockname-helperelement {  
+    
+}
+
+// Media rules - Mobile First, use min-width
+@media ( min-width: $screen-sm-min ) {
+
+    .blockname {
+        // etc..
+    }  
+}
+
+// Default states
+.blockname {
+    display: none;
+}

@@ -1,0 +1,212 @@
+// B.2 selectric
+
+
+$selectricBorderRarius: 1/2* 1.5* $l_h; // for h3
+
+body .selectric-wrapper {
+
+}
+// видимое поле
+body .selectric{
+   
+    
+    // max-width: 240px;
+    // border: 1px solid $grey_light; 
+    // background-color: lighten($grey_light, 15%); 
+    // 
+        @include height_leveling('forms_element');
+        @include h_rhytm('forms_element', $font_forms_elements);
+
+         // max-width: 300px;
+        @include font_size_pro('h3');   
+        border: 1px solid $grey_light;     
+        background-color: $white;
+
+        // padding-left: 2.5* $forms_element_icon_metric;    
+
+    span.label{
+
+        // $all-text-inputs
+        margin: 0;
+        line-height: $l_h;
+        font-family: $font_family;
+        font-weight: 400;         
+
+        // position: relative;
+        @include height_leveling('forms_element');
+        // @include h_rhytm('forms_element', $font_forms_elements);
+
+        // max-width: 300px;
+        @include font_size_pro('h3');   
+        // padding-left: 2.5* $forms_element_icon_metric; 
+        color: $grey_dark; //  $white; 
+
+
+        // specific
+        @include flex(flex-start, center);
+    }
+    .button {
+        // @extend .themify;
+        // @extend .themify-angle-right;
+        
+        // arrow-dropdown-down.svg
+
+        right: 1rem;
+        top: 50%;
+        transform: translate(0, -50%);
+        // background-color: $accent;
+        // background-color: $grey_dark;
+        border: 2px solid $grey_dark;
+        background-color: $grey_dark;
+        background-image: url('../images/arrow-dropdown-down.svg');
+        background-repeat: no-repeat;
+        background-position: center center;
+        @extend %border_circle;
+        &:before {
+
+        }
+        &:after {
+            // Скрываем иконку по умолчанию
+            display: none;
+        }
+    }
+
+    &-hover{
+        .selectric {
+            // border-color: $grey_light; 
+        }
+    }
+    &-open,
+    &-focus{
+        .selectric {
+            // border-color: $accent; 
+        }
+        span.label {
+            color: $text;
+        }
+        .button {
+            background-color: $accent !important;
+            border-color: $accent !important;
+        }
+    }      
+    &-open {
+        .selectric {
+            border-radius:  $selectricBorderRarius $selectricBorderRarius  0 0    !important;
+        }
+
+    }
+}
+
+
+
+// выпадающий список
+body .selectric-items {
+    // @extend %shadow;
+    border: none;
+    
+    @include font_size_pro('h3');
+    border-radius:  0 0   $selectricBorderRarius $selectricBorderRarius;
+    overflow: hidden;
+
+    .selectric-scroll {
+        ul{
+            li{
+                padding-left: 1*$l_h_base;
+                padding-right: 1*$l_h_base;
+                background-color: $white;
+                @include font_size_pro('h3');
+                // font-size: 26px;
+                // line-height: 30px;
+                text-align: left;                
+                color: $grey_dark;
+
+                // border-radius: 1/2* 1.5* $l_h;
+
+
+                &:hover,
+                &.hover,
+                // &.highlighted
+                {
+                    background-color: $accent;
+                    color: $white;
+                }
+                // &:hover,
+                // &.hover,
+                &.highlighted{
+                    background-color: $accent_dark;
+                    color: $white;
+                } 
+            }
+        }
+    }
+}
+
+
+
+// body .selectric{
+//     max-width: 240px;
+//     border: 1px solid $grey_light; 
+//     background-color: lighten($grey_light, 15%); 
+
+//     &-hover{
+//         .selectric {
+//             border-color: $grey_light; 
+//         }
+//     }
+//     &-open,
+//     &-focus{
+//         .selectric {
+//             border-color: $accent; 
+//         }
+//     }    
+
+//     .label{
+//         @include height_leveling('forms_element');
+//         @include h_rhytm('forms_element', $font_forms_elements); 
+
+//         position: relative;
+//         padding-right: 1 * $fb; //
+//         color: $grey_dark;
+
+//         margin-left: 0;
+//         font-size: $fb;
+//     }
+//     .button {
+//         @extend .themify;
+//         @extend .themify-angle-right;
+//         &:before {
+//             transform: translate(-50%, -50%) rotate(90deg);
+//             position: absolute;
+//             top: 50%; left: 50%;
+            
+//             font-size: $fb;
+//             font-size: $font_small;
+//         }
+//         &:after {
+//             display: none;
+//         }
+//     }
+// }
+// body .selectric-items {
+//     @extend %shadow;
+//     border: none;
+
+//     .selectric-scroll {
+//         ul{
+//             li{
+//                 @include height_leveling('forms_element');
+//                 // @include height_leveling('heading');
+//                 @include h_rhytm('forms_element', $font_forms_elements); 
+//                 color: $text;
+//                 font-size: $fb;
+
+//                 &:hover,
+//                 &.hover,
+//                 &.highlighted{
+//                     background: linear-gradient(to right, $accent, $accent_light);
+//                     color: $white;
+//                 }                    
+//             }
+//         }
+//     }
+// }

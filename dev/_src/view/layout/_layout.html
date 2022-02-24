@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+{% include "layout/_head.html" %}
+{#% include "view/layout/_head.html" %#}
+{#% include "_src/view/layout/_head.html" %#}
+
+<body>
+
+
+{#% import "components/menu/_menu-top.html" as menu_top %#}
+{#% import "components/menu/_menu-main.html" as menu_main %#}
+{#% import "components/menu/_menu-footer.html" as menu_footer %#}
+{#% import "components/social-links/_social-links.html" as social_links %#}
+{#% import "components/forms/_forms.html" as forms %#}
+
+
+
+<div id="my-page">
+
+    {% include "layout/_header.html" %}
+
+
+    {% block page_heading %}
+        Page heading
+    {% endblock %} 
+
+
+    {% block main %}
+        This is the default content
+    {% endblock %} 
+
+
+
+
+</div>
+
+{#% include "layout/_footer.html" %#}
+
+{% include "layout/_scripts.html" %}
+
+</body>
+</html>
+
+
+
+
+
+

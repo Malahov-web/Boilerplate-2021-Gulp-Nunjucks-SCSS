@@ -1,0 +1,67 @@
+
+
+{% macro breadcrumb(pages_arr, block_class='', button_text='Показать телефон') %}
+
+    {#{ pages_arr | dump }#}
+     
+    <ul class="breadcrumb {{ block_class }} " data-lop-last="{{ loop.last }} ">
+        {% for item in pages_arr %}
+
+            {% if ( true != loop.last)  %}
+                <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+            {% else %}
+                <li> {{ item.title }}</li>
+            {% endif %}      
+
+        {% else %}
+            <!-- <li><a href="/">Если объект страниц не парадан - Главная</a></li> -->
+        {% endfor %}
+        
+    </ul>
+
+{% endmacro %}
+
+{# Output: #}
+    <!--ul class="breadcrumb">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/cat_foodstuffs/">Продукция</a></li>
+        <li class="active">Овощи, фрукты, ягоды, грибы</li>
+    </ul-->
+
+
+
+
+{% macro breadcrumbs_skynet(block_class='', value='') %}
+<ul class="breadcrumbs {{ block_class }}">
+    <li class="breadcrumbs__item">
+        <a href="index.html">Главная</a>
+    </li>
+    <li class="breadcrumbs__item">
+        <a href="news.html">новости</a>
+    </li>
+    <li class="breadcrumbs__item">
+        <span>Перепись Малого Бизнеса 2021</span>
+    </li>
+</ul>
+{% endmacro %}
+
+
+
+
+{% macro breadcrumbs_bootstrap(block_class='', value='') %}
+<nav aria-label="breadcrumb" class="mb-md">
+    <ol class="breadcrumb {{ block_class }}">
+<!--         <li class="breadcrumb-item"><a href="#">Новости</a></li>
+        <li><span>&mdash;&mdash;</span></li>
+        <li class="breadcrumb-item active" aria-current="page">Пресс-завтрак 12 августа</li> -->
+
+        <li class="breadcrumb-item"><a href="#">О проекте</a></li>
+        <li><span>&mdash;&mdash;</span></li>
+        <li class="breadcrumb-item active" aria-current="page">Новости</li>
+
+    </ol>
+</nav>
+{% endmacro %}
+
+
+

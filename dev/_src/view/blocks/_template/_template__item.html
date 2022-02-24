@@ -1,0 +1,26 @@
+<div class="mv_12 tb_6 hd_4 blockname__item-outer">
+
+    <article class="blockname__item">
+        <div class="blockname__item-image">
+            <picture>
+                <source media="(min-width: 0)" srcset="uploads/blockname/{{ item['item-image'] }}">
+                    <img alt="{{ item['item-title'] }}" src="uploads/blockname/{{ item['item-image'] }}">
+                    </img>
+                </source>
+            </picture>
+        </div>
+        <div class="blockname__item-content">
+            <h3 class="blockname__item-title">
+                <a href="#">
+                    {{ item['item-title'] }}
+                </a>
+            </h3>
+            <div class="blockname__item-text">{{ item['item-text'] }}
+            </div>
+            <time class="blockname__item-date" datetime="{{ item['item-datetime'] }}">
+                {{ item['item-date'] }}
+            </time>                                
+        </div>
+    </article>
+
+</div>

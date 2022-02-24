@@ -1,0 +1,9 @@
+// @import 'mixins/special/hexagon';
+// @import 'mixins/special/hexagon_bg';
+// @import 'mixins/special/iphone';
+@import 'mixins/special/cuted_corners';
+
+@import 'mixins/design';
+@import 'mixins/screw';
+@import 'mixins/theme'; // TODO: first add _vars.scss
+@import 'mixins/extends';

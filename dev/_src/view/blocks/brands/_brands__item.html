@@ -1,0 +1,26 @@
+<div class="mv_12 tb_6 hd_4 brands__item-outer">
+
+    <article class="brands__item">
+        <div class="brands__item-image">
+            <picture>
+                <source media="(min-width: 0)" srcset="uploads/brands/{{ item['item-image'] }}">
+                    <img alt="{{ item['item-title'] }}" src="uploads/brands/{{ item['item-image'] }}">
+                    </img>
+                </source>
+            </picture>
+        </div>
+        <div class="brands__item-content">
+            <h3 class="brands__item-title">
+                <a href="#">
+                    {{ item['item-title'] }}
+                </a>
+            </h3>
+            <div class="brands__item-text">{{ item['item-text'] }}
+            </div>
+            <time class="brands__item-date" datetime="{{ item['item-datetime'] }}">
+                {{ item['item-date'] }}
+            </time>                                
+        </div>
+    </article>
+
+</div>

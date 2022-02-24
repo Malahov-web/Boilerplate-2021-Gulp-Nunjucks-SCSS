@@ -1,0 +1,105 @@
+
+{% macro breadcrumb(pages_arr, block_class='', button_text='Показать телефон') %}
+
+    {#{ pages_arr | dump }#}
+     
+    <ul class="breadcrumb {{ block_class }} " data-lop-last="{{ loop.last }} ">
+        {% for item in pages_arr %}
+
+            {% if ( true != loop.last)  %}
+                <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+            {% else %}
+                <li> {{ item.title }}</li>
+            {% endif %}      
+
+        {% else %}
+            <!-- <li><a href="/">Если объект страниц не парадан - Главная</a></li> -->
+        {% endfor %}
+        
+    </ul>
+
+{% endmacro %}
+
+{# Output: #}
+    <!--ul class="breadcrumb">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/cat_foodstuffs/">Продукция</a></li>
+        <li class="active">Овощи, фрукты, ягоды, грибы</li>
+    </ul-->
+
+
+
+
+
+{% macro breadcrumbs_skynet (block_class='', value='') %}
+<ul class="breadcrumbs {{ block_class }}">
+    <li class="breadcrumbs__item">
+        <a href="index.html">Главная</a>
+    </li>
+    <li class="breadcrumbs__item">
+        <a href="news.html">новости</a>
+    </li>
+    <li class="breadcrumbs__item">
+        <span>Перепись Малого Бизнеса 2021</span>
+    </li>
+</ul>
+{% endmacro %}
+
+
+
+
+{% macro breadcrumbs_bootstrap (block_class='', value='') %}
+<nav aria-label="breadcrumb" class="mb-md">
+    <ol class="breadcrumb {{ block_class }}">
+<!--         <li class="breadcrumb-item"><a href="#">Новости</a></li>
+        <li><span>&mdash;&mdash;</span></li>
+        <li class="breadcrumb-item active" aria-current="page">Пресс-завтрак 12 августа</li> -->
+
+        <li class="breadcrumb-item"><a href="#">О проекте</a></li>
+        <li><span>&mdash;&mdash;</span></li>
+        <li class="breadcrumb-item active" aria-current="page">Новости</li>
+
+    </ol>
+</nav>
+{% endmacro %}
+
+
+
+
+{% macro breadcrumbs_navtx (block_class='', value='', separator='&gt;') %}
+<div class="breadcrumbs" typeof="BreadcrumbList" vocab="https://schema.org/">
+    <!-- Breadcrumb NavXT 6.6.0 -->
+    <span property="itemListElement" typeof="ListItem">
+        <a property="item" typeof="WebPage" title="Go to Сызранский мясо комбинат." href="http://smk-syzran" class="home">
+            <span property="name">Главная</span>
+        </a>
+        <!-- <meta property="position" content="1"> -->
+    </span>
+
+    <span class="separator"> {{ separator }} </span>
+
+    <span property="itemListElement" typeof="ListItem">
+        <a property="item" typeof="WebPage" title="Go to the Продукция category archives." href="http://smk-syzran/category/products/" class="taxonomy category">
+            <span property="name">Продукция</span>
+        </a>
+        <!-- <meta property="position" content="2"> -->
+    </span>
+
+    <span class="separator"> {{ separator }} </span>
+
+    <span property="itemListElement" typeof="ListItem">
+        <a property="item" typeof="WebPage" title="Go to the Колбасы вареные category archives." href="http://smk-syzran/category/products/kolbasi-varenie/" class="taxonomy category">
+            <span property="name">Колбасы вареные</span>
+        </a>
+        <!-- <meta property="position" content="3"> -->
+    </span>
+
+    <span class="separator"> {{ separator }} </span>
+
+    <span property="itemListElement" typeof="ListItem">
+        <span property="name" class="post post-post current-item">Колбаса Сервелат варено-копченая </span>
+        <!-- <meta property="url" content="http://smk-syzran/2021/05/26//"> -->
+        <!-- <meta property="position" content="4"> -->
+    </span>
+</div>
+{% endmacro %}

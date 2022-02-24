@@ -1,0 +1,185 @@
+/* modals */
+
+.overlay {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparentize($text, 1-0.8);
+    z-index: $zindex_modal;
+    overflow-x: scroll;
+    backdrop-filter: blur(50px);
+    &-inner {
+        @include pseudoelement_left_top(0, 0);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .modal {}
+}
+
+$button_close_width: 1em;
+.modal {
+    position: relative;
+    z-index: $zindex_modal;
+    width: 90%;
+    max-width: 860px;
+    background: $accent;
+    // background: $accent_dark;
+    color: $white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-sizing: border-box;
+    /* shadow elements */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.33);
+    border-radius: $bd_rad;
+    padding: 1*$l_h 0 1*$l_h;
+
+    @include h_rhytm('modal', $l_h); // @media (min-width: #{map-get($devices, 'ds_')}px) {
+    @media (min-width: get_grid_bp('ds_')+px) {
+        width: 100%;
+    }
+    &--video {
+        padding: 2*$l_h 0 2*$l_h;
+        .modal__text {
+            padding-top: 0;
+        }
+    }
+    &-inner {
+        position: relative;
+    }
+    &__close {
+        z-index: $zindex_modal + 10;
+        @include pseudoelement_right_top(1*$l_h_base, 1*$l_h_base);
+        width: 2.5*$l_h_base;
+        height: 2.5*$l_h_base; // background-color: $text;
+        background: $white url('../images/close.png') center center no-repeat;
+        background-size: contain;
+        color: $text;
+        opacity: 0.75;
+        cursor: pointer;
+        @extend %border_circle;
+        @extend %transition;
+        // text;
+        @include flex(center, center);
+        @include font_size_pro('h2');
+        color: transparentize($text, 1-0.75);
+
+
+        &:hover {
+            opacity: 1;
+            color: $accent;
+        }
+    }
+    &__header {
+        position: relative;
+        text-align: center;
+    }
+    &__content {
+        // padding-top: 2*$l_h_base;
+        text-align: center;
+    }
+    &__footer {
+        text-align: center;
+    }
+    &__title,
+    &__title h2 {
+        // @include font_size_pro('h2');
+        // @include height_leveling('heading');
+        // @include typo('heading');
+        // color: #FFFFFF;
+        // text-align: center;
+
+        position: relative;
+        margin-bottom: 1*$l_h_base ;
+        @include font_size_pro('h1');
+        font-weight: bold;
+        color: $white;        
+        text-align: center;
+    }
+    &__text {
+        @include font_size_pro('h5');
+        @include height_leveling('text');
+        // padding-top: 2*$l_h_base;
+        text-align: center;
+    }
+    &__buttons {
+        margin-top: 2*$l_h;
+        .button {
+            margin: 0 auto;
+        }
+    }
+    .form__assign {
+        justify-content: center;
+        padding-top: 1*$l_h_base;
+    }
+}
+
+.js-modal {
+    // display: none;
+}
+
+/* TEMP */
+
+.modal--callback {
+    // display: none;
+    // display: block;
+    overflow: hidden;
+    padding-top: 125px;
+    padding-bottom: 2*$l_h;
+    background: url('../images/modal-callback-bg.jpg') center 0 no-repeat;
+    background-size: cover;
+
+    @include media-up('tb_') {
+        padding-top: 250px;
+    }    
+
+
+    // Круг фон
+    &:before {
+        // @include pseudoelement_left_top(50%, 50%);
+        // transform: translate(-10vw, -50%);
+        // transform: translate(-50%, -50%);
+        // width: 100vw;
+        // height: 100vw;
+        // width: 50%;
+        // height: 100vw;
+        
+        @include pseudoelement_left_top(50%, 0%);
+        // transform: translate(-10vw, -50%);
+        transform: translate(-50%, 200px);
+        width: 1200px;
+        height: 600px; // 800
+        // padding-bottom: 100%;
+
+        background-color: $accent_dark;
+        // background-color: $accent_dark;
+        border-radius: 50%;
+    }
+}
+
+.modal--consultation {
+    // display: none;
+}
+
+.modal--order {
+    // display: none;
+}
+
+.modal--review {}
+
+.modal--thanks {
+    // display: none;
+}
+
+.overlay {
+    // display: none;
+    // display: block;
+}
+
+.modal {
+    // display: none;
+}

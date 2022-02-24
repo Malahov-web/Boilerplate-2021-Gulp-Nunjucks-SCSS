@@ -1,0 +1,321 @@
+/*
+ * cut_corners()
+ */
+
+/// Cute block corners - Generates a pseudo-elements with bg colors on block corners (for 2 corners)
+/// Need: position: relative; on element,
+/// Recommended: overflow: hidden; if they are several elements near
+///
+/// Example: 
+/// @include cuted_corners( ($first_direction, $first_border_radius, $first_color), ($second_direction, $second_border_radius, $second_color) );
+/// @include cuted_corners( ('right top', 30px, $grey_light), ('bottom top', 20px, $grey_light) );
+/// 
+/// @argument {list } $args_corner_first
+///   First corner args:
+///     {string} $first_direction [ 'left top' | 'right top' | 'left bottom' | 'right bottom' ]
+///         First corner direction
+///     {number (with unit)} $first_border_radius
+///         First corner border-raduis
+///     {color} $first_color
+///         First corner bg color
+///
+/// @argument {list } $args_corner_first
+///   First corner args:
+///     {string} $second_direction [ 'left top' | 'right top' | 'left bottom' | 'right bottom' ]
+///         First corner direction
+///     {number (with unit)} $second_border_radius
+///         First corner border-raduis
+///     {color} $second_color
+///         First corner bg color
+///
+/// @example scss
+/// .my-element {
+///     @include cuted_corners( ('left top', 30px, $grey_light), ('right top', 20px, $grey_light) );
+/// }
+/// 
+/// // CSS Output
+/// .my-element::before {
+///     right: -30px;
+///     top: -30px;
+///     position: absolute;
+///     content: "";
+///     border: 30px solid #d6d5d7;
+///     transform: rotate(45deg);
+/// }
+/// .my-element::after {
+///     right: -20px;
+///     bottom: -20px;
+///     position: absolute;
+///     content: "";
+///     border: 20px solid #d6d5d7;
+///     transform: rotate(45deg);
+/// }
+/// 
+
+
+
+
+// nth ($array, $index) - получает элемент массива (списка по индексу)
+
+/*
+
+Взять первый аргумент массив
+Разложить деструктивно
+Если направление direction
+    1
+    2
+    3
+    4
+
+
+ */
+
+@mixin cuted_corners ($args_corner_first, $args_corner_second: '') {
+// @mixin cuted_corners ($args_corner_first) {
+
+    // args_corner_first
+    @if list != type-of( $args_corner_first )  {
+        @debug 'WANRING: mixin cuted_corners() args is not list';
+
+    }
+
+    // @debug 'args_corner_first: ';
+    // @debug $args_corner_first; // +
+    $first_direction: nth($args_corner_first, 1);
+    // @debug 'FIRST_DIRECTION: ';
+    // @debug $first_direction; // +
+    $first_border_radius: nth($args_corner_first, 2);
+    $first_color: nth($args_corner_first, 3);
+
+    // 1й
+    &:before {
+
+        // Выбираем св-ва отвечающие за напраления
+        @if 'left top' == $first_direction {
+            left: -$first_border_radius;
+            top: -$first_border_radius;
+        }
+
+        @if 'right top' == $first_direction {
+            right: -$first_border_radius;
+            top: -$first_border_radius;
+        }
+
+        @if 'left bottom' == $first_direction {
+            left: -$first_border_radius;
+            bottom: -$first_border_radius;
+        }  
+
+        @if 'right bottom' == $first_direction {
+            right: -$first_border_radius;
+            bottom: -$first_border_radius;
+        }  
+
+        position: absolute;
+        content: "";
+
+        // metrics and bg using border)
+        border: $first_border_radius solid $first_color;
+
+        // background-color: $first_color;
+        transform:  rotate(45deg);
+
+    }
+
+
+
+    // args_corner_second
+    @if list != type-of( $args_corner_second )  {
+        @debug 'WANRING: mixin cuted_corners() args is not list';
+
+    }
+
+
+    $second_direction: nth($args_corner_second, 1);
+    $second_border_radius: nth($args_corner_second, 2);
+    $second_color: nth($args_corner_second, 3);
+
+    // 2й
+    &:after {
+
+        // Выбираем св-ва отвечающие за напраления
+        @if 'left top' == $second_direction {
+            left: -$second_border_radius;
+            top: -$second_border_radius;
+        }
+
+        @if 'right top' == $second_direction {
+            right: -$second_border_radius;
+            top: -$second_border_radius;
+        }
+
+        @if 'left bottom' == $second_direction {
+            left: -$second_border_radius;
+            bottom: -$second_border_radius;
+        }  
+
+        @if 'right bottom' == $second_direction {
+            right: -$second_border_radius;
+            bottom: -$second_border_radius;
+        }  
+
+        position: absolute;
+        content: "";
+
+        // metrics and bg using border)
+        border: $second_border_radius solid $second_color;
+
+        // background-color: $second_color;
+        transform:  rotate(45deg);
+
+    }
+
+}
+
+// DEBUG:
+// 
+// .cut_corners {
+//     content: "";
+//     position: absolute;
+//     right: -30px;
+//     top: -30px;
+//     border: 30px solid #ffffff;
+//     transform: rotate(45deg);
+//     background-color: #ffffff;
+
+// }
+
+// .cuted_corners {
+//     content: "";
+//     position: absolute;
+//     right: -20px;
+//     top: -20px;    
+//     transform: rotate(45deg);
+//     border: 20px solid #ffffff;
+    
+// }
+
+
+
+
+
+
+// @mixin cut_corners ($corner_radius, $corner_color) {
+
+// v args is arrays (lists - each corner is list)    
+// @mixin crop_corners ( 
+//         ( 'left top', 20px, $white ),
+//         ( 'right top', 20px, $white ),
+//     )  {
+
+
+// @mixin crop_corners ( 
+//         ( $corner_position, $corner_radius, $corner_color ),
+//         ( 'right top', 20px, $white ),
+//     )  {
+     
+  
+@mixin crop_corners ( $args )  {
+
+    // for
+
+    @each $item in ( $args ) {
+
+        // $corner_position = list.nth($item, 0); // 
+        // @debug 'corner_position';//  $corner_position;
+        // @debug $corner_position;
+        // 
+        // @debug list.nth(10px 12px 16px, 2); //  -
+        // @debug nth(10px 12px 16px, 2); //  +
+        
+
+        $corner_position: nth($item, 1); // в SASS начинается с 1 счет)
+        @debug 'corner_position';//  $corner_position;        
+        @debug $corner_position; // +
+
+        // Далее:
+        // 
+        // дописать стили уголков
+        
+
+
+
+        // // right top
+        // &:before {
+
+
+        //     @include pseudoelement_right_top(-$corner_radius, -$corner_radius);
+        //     // width: 2em;
+        //     // height: 2em;
+        //     border: $corner_radius solid $corner_color;
+        //     // background-color: #b25c9c;
+        //     transform:  rotate(45deg);
+        //     background-color: $white;
+        //     color: $corner_position;
+        // }          
+    }
+
+
+
+    // // right top
+    // &:before {
+
+
+    //     @include pseudoelement_right_top(-$corner_radius, -$corner_radius);
+    //     // width: 2em;
+    //     // height: 2em;
+    //     border: $corner_radius solid $corner_color;
+    //     // background-color: #b25c9c;
+    //     transform:  rotate(45deg);
+    //     background-color: $white;
+    // }   
+
+    // // left bottom
+    // &:after {
+
+
+    //     // @include pseudoelement_right_top(-2em, -2em);
+    //     position: absolute;
+    //     content: "";
+    //     left: -$corner_radius; bottom: -$corner_radius;
+    //     border: $corner_radius solid $corner_color;
+    //     // background-color: #b25c9c;
+    //     transform:  rotate(45deg);
+    //     background-color: $white;
+    // }
+
+}
+
+
+
+// // Old static v
+// @mixin cut_corners ($corner_radius, $corner_color) {
+
+//     // right top
+//     &:before {
+
+
+//         @include pseudoelement_right_top(-$corner_radius, -$corner_radius);
+//         // width: 2em;
+//         // height: 2em;
+//         border: $corner_radius solid $corner_color;
+//         // background-color: #b25c9c;
+//         transform:  rotate(45deg);
+//         background-color: $white;
+//     }   
+
+//     // left bottom
+//     &:after {
+
+
+//         // @include pseudoelement_right_top(-2em, -2em);
+//         position: absolute;
+//         content: "";
+//         left: -$corner_radius; bottom: -$corner_radius;
+//         border: $corner_radius solid $corner_color;
+//         // background-color: #b25c9c;
+//         transform:  rotate(45deg);
+//         background-color: $white;
+//     }
+
+// }

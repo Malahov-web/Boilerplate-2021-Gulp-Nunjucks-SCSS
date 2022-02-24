@@ -1,0 +1,162 @@
+@import 'set_fonts_object';
+
+
+
+
+@mixin border_fullwidth($type, $color) {
+
+        position: relative;
+
+        @if $type == 'top' {
+            &:before {
+
+                @include pseudoelement_left_top(-100%, 0%); 
+
+                width: 300%;
+                height: 1px;
+                background-color: $color;
+            }
+        }
+
+        @if $type == 'bottom' {
+            &:after {
+
+               @include pseudoelement_left_top(-100%, 100%); 
+
+                width: 300%;
+                height: 1px;
+                background-color: $color;
+            }
+        }
+
+}
+
+
+
+                    
+// Set font-size for each device from $fonts to @media selectors
+//
+// settings:
+$settings_font_size_pro: (
+    round_values: 1, // [0, 1], boolean
+);
+//
+
+@mixin font_size_pro ($type) {
+
+    $curr_font_size : 0;
+    $prev_font_size : 0;
+
+    @each $fonts_device, $fonts_obj in $fonts {
+
+        $curr_font_size: map-get($fonts_obj, $type);
+        // @debug "curr_font_size_ : #{$curr_font_size}";
+        // @debug "prev_font_size : #{$prev_font_size}";
+
+
+        @if ( $curr_font_size != $prev_font_size ) {
+
+            $prev_font_size: $curr_font_size;
+
+            // @media (min-width: #{map-get($devices, $fonts_device)}px) {                
+            @media (min-width: #{  bp($fonts_device) }px) {                
+                // font-size: map-get($fonts_obj, $type);
+
+
+                $font_size: map-get($fonts_obj, $type);
+                // font-size: $font_size;
+                // font-size:   round($font_size) ;
+
+                @if  map-get($settings_font_size_pro, round_values) == 1  {
+                    font-size:   round($font_size) ;
+                } @else {
+                    font-size: $font_size;
+                }
+
+            }
+
+        } // @if
+
+        // @debug "__ start next iteration";     
+    } // @each
+
+}
+
+
+
+/*
+
+Obj $devices 
+->
+Obj $font_size_names
+->
+function set_font_sizes()
+->
+mixin font_size_pro()
+
+*/
+
+
+.my_text {
+    // font-size: modular-scale(3, 1em, $major-seventh);
+    // font-size: modular-scale(3, 1em, 1.2);
+}
+    // @debug "Fonts array: #{$fonts}";
+.my_head {
+    // @include font_size_pro('small');
+
+    // @include font_size_pro_old('base'); // +
+
+    // @include font_size_pro('small');    
+    @include font_size_pro('h6');
+}
+
+
+
+
+@mixin grad($type) {
+
+
+    @if $type == decor {
+        // background: linear-gradient(to right, transparentize($orange, 0.1), $pink);
+        background: linear-gradient(to right, $accent, $accent_alt_light);
+    }
+    @else if $type == button {
+        background-image: linear-gradient(to right, $accent, $accent_alt_light);
+    }   
+    @else if $type == section {
+        background: linear-gradient(to top, $accent, $accent_alt_light);
+    }
+
+    @else if $type == icon_white {
+        background-image: linear-gradient(to bottom, $white, transparentize($white, 1-0.9));
+
+    }
+    @else if $type == menu {
+        background: linear-gradient(180deg, $accent_light 50%, $accent 50%, $accent_light 100%), #C4C4C4;
+       
+    }
+
+
+    @else if $type == text {
+        // background: linear-gradient(to bottom, $orange, $pink);
+    }
+    @else if $type == list {
+        // background: linear-gradient(to left, $orange, $pink);
+    }    
+    @else if $type == title {
+        // background: linear-gradient(to top, $orange, $pink);
+
+    }  
+
+
+
+    // background-clip: text;
+    // text-fill-color: transparent;
+    // -webkit-text-fill-color: transparent;
+    // -moz-text-fill-color: transparent;
+
+}
+
+
+

@@ -1,0 +1,115 @@
+
+// $myvar = myfunc();  // НЕТ такого в Sass
+
+// .myselector {       // Функии только для установления значения селекторов
+//     prop : myfunc();
+// }
+
+
+@function get_font_size($arg: '25px') {
+
+    @return 50px;
+}
+
+
+
+
+
+
+
+/// Remove the unit of a length
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+@function strip-unit($number) {
+    @if type-of($number) == 'number' and not unitless($number) {
+        @return $number / ($number * 0 + 1);
+    }
+
+    @return $number;
+}
+
+// to_number($string) - converse string to number
+@function to_number($string) {
+    // Matrices
+    $strings: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9';
+    $numbers: 0 1 2 3 4 5 6 7 8 9;
+
+    // Result
+    $result: 0;
+
+    // Looping through all characters
+    @for $i from 1 through str-length($string) {
+        // Do magic
+    }
+
+    @return $result;
+}
+
+// em(), rem(), to_px() - unit conversion
+$browser-context: 16;
+@function em($pixels, $context: $browser-context) {
+    @return #{$pixels/$context}em;
+}
+@function rem($pixels, $context: $browser-context) {
+    @return #{$pixels/$context}rem;
+}
+@function  to_px($rem, $context: $browser-context) {
+
+    @return strip-unit($rem * $context);
+}
+
+// bp($bp_name) - return breakpoint value (unitless) from $devices 
+@function bp($bp_name) {
+
+    $bp_obj: map-get($devices, $bp_name);
+    $bp_value: map-get($bp_obj, breakpoint);
+
+    @return $bp_value;  
+}
+
+// _() - decorator for map-get
+@function _($object, $field) {
+
+    $value: map-get(
+        $object, 
+        $field
+    );    
+    @return $value;
+}
+
+// __() - return value from x2 deep obj
+@function __($object, $subfield, $field) {
+
+    $value: map-get(
+        map-get($object, $subfield), 
+        $field
+    );    
+    @return $value;
+}
+
+// map-set() - add pair 'key':'value' to obj // a map-set function (not included with Sass) // oddbird.net
+@function map-set($map, $key, $value) {
+    $new: ($key: $value);
+    @return map-merge($map, $new);
+}
+
+
+
+// =============================================================================
+// String Replace
+// =============================================================================
+
+@function str-replace($string, $search, $replace: "") {
+    $index: str-index($string, $search);
+
+    @if $index {
+        @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+
+    @return $string;
+}
+
+
+
+
+

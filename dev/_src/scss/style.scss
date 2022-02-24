@@ -1,0 +1,165 @@
+@charset 'utf-8';
+
+/*
+ * Table of contents   Содержание
+ *
+ *  0. Imports
+ *  1. General Vars, Mixins, Extends
+
+ *  14.
+ *
+ */
+
+
+@import 'services/services'; // services and helpers functions
+@import 'libs';         // external libs
+@import 'fonts';        // fonts add
+@import 'mwgrid';       // layout framework
+
+@import 'vars';
+@import 'mixins';
+@import 'base';         // base, 
+
+@import 'plugins/plugins'; // external plugins custom styles
+// @import 'components';   // moved to -> _base
+@import 'blocks&components';   // moved to -> _base
+// @import 'print';     // print v styles
+
+$accent: #3c9;
+$accent: #9c3;
+
+
+/* 1. General, structure
+ * **********************************************************************
+ *  
+*/
+
+
+// .main {
+//     @include h_rhytm('column', $fb);
+//     float: right;
+//     width: 100%;
+//     // @media (min-width: #{map-get($devices, 'ds_')}px) {
+//     @media (min-width: bp('ds_')+0px ) {
+//         width: calc(100% - #{$sidebar_width}px - #{$sidebar_offset});
+//     }
+//     @media (min-width: bp('hd_')+0px ) {
+//         width: 67%;
+//     }    
+// }
+
+// .sidebar {
+//     @include v_rhytm('section-block', $l_h_base);
+//     @include h_rhytm('column', $fb);
+//     float: left;
+//     width: 100%;
+
+//     @media (min-width: bp('ds_')+0px ) {
+//         // На ds ширина фикс
+//         // margin: 0;
+//         width: $sidebar_width+px;
+//     }
+//     @media (min-width: bp('hd_')+0px ) {
+//         // На hd ширина в процентах
+//         // width: 25%;
+//         width: calc(33% - 2*#{$columns_gap}px);
+//     }    
+// }
+// .sidebar__block {
+//     margin-bottom: 1*$l_h_card;
+
+//     &-title {
+
+//         // width: 205px;
+//         // height: 14px;
+//         position: relative;
+//         background-color: $white-two;          
+//         // @include type_block_title;
+
+//         @include font_size_pro('h5');
+//         @include typo('title');
+//         @include height_leveling('text');
+//         @include color_scheme('extralight');
+//         text-align: center;
+
+//         // arrow
+//         &::before {
+//             @include triangle("down", 16px, 8px, $white-two);
+//             content: "";
+//             @include pseudoelement_left_top(50%, 100%);
+//             transform: translate(-50%, 0);
+//         }        
+
+
+//     }
+
+//     &-content {
+//         padding-left: 1*$l_h_card;
+//         padding-right: 1*$l_h_card;
+//         padding: 1*$l_h_card;
+//         background-color: $white;
+//     }
+
+// }
+
+.main--sidebar--left {
+    float: right;
+}
+
+.main--sidebar--right {
+    float: left;
+}
+
+.main--sidebar--right + .sidebar {
+    float: right;
+}
+
+/* 2. Header
+ * **********************************************************************
+ *  
+*/
+
+.header{
+
+}
+.header-top{
+
+}
+.logo{
+
+    img{
+        width: auto; max-width: 100%; height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+   
+    
+} /* media end */
+
+
+
+
+header {
+    width: 100%;
+    padding: 1rem  0;
+    // background-color: #39c;
+    background-color: #fff;
+    background-color: $accent;
+    // display: flex;
+    // transform: translate(0, -10%);
+    // opacity: 0.5;
+
+}
+
+.title,
+.logo {
+    // font-size: get_font_size();
+    background-color: #fff;
+    color: #000;
+    // color: $accent;
+
+    @include font_size_pro('h3');
+
+    // @extend %border_circle;
+}

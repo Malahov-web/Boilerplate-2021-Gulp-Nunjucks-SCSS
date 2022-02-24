@@ -1,0 +1,172 @@
+/*
+ * Blocks vars
+ * Block and elements styles
+ * Other styles (Not block elems, but associated with it)
+ * Media rules - Mobile First, use min-width
+ * Default states
+ */
+
+/*
+ * 1. breadcrumb ( breadcrumb li a)
+ * 2. breadcrumbs skynet
+ * 3. Breadcrumbs NavXT (WordPress)
+ * 3. Breadcrumbs Bootstrap
+ */
+
+// Block vars
+
+$breadcrumbsStrHeight: $l_h_head;
+
+// TODO: breacrumbs comp
+// .breadcrumbs {
+.breadcrumb {
+
+    li {
+        // display: list-item;
+        // display: inline-block;
+
+        @include flex(flex-start, center, row, wrap);
+        display: inline-flex;
+        font-family: $font_family_head;
+        @include font_size('base');
+
+        span {
+            color: $grey;
+        }
+        a {
+            &:hover {
+                color: $accent;
+            }
+        }
+    }
+    li.active {
+        color: $grey;
+    }
+
+    // Blocks Modificators
+    &--dark li {
+
+        line-height: $l_h;
+        // is span separator always ?
+        span {
+            color: $grey;
+            margin: 0 0.5em;
+            color: $accent;
+        }
+        a {
+            color: $grey;
+            &:hover {
+                color: $accent;
+            }
+        }
+    }
+    &--dark li.active {
+        color: $white;
+    }
+
+}
+
+
+/*
+ * 3. Breadcrumbs NavXT
+ */
+// $breadcrumbsStrHeight: $l_h_head;
+
+// Breadcrumbs NavXT
+
+.breadcrumbs {
+    // пункты 
+    // span {
+    // }
+    span[typeof="ListItem"] {
+        // display: inline-block;
+        @include font_size_pro('h6');
+        line-height: $l_h_head;
+        text-transform: uppercase;
+        color: $grey;
+        color: $text;
+
+        a {
+            color: $grey;
+            &:hover {
+                color: $accent;
+            }
+        }
+        // активный, последний пункт
+        span.current-item {
+            // color: $grey;
+            color: $text;
+        }
+    }
+    // разделитель
+    // в настройках в шаблоне обернуть в span.separator
+    span.separator {
+        @include font_size_pro('h6');
+        line-height: $l_h_head;
+        text-transform: uppercase;
+        color: $grey;
+    }    
+
+}
+
+
+// Block and elements
+// .blockname {
+//     padding: 10px;
+
+//     &:hover {
+
+//     }
+//     // Block Elements    
+//     &__item {
+//         &-title {
+//             // Default rules
+//         }
+//         &-text {
+
+//         }
+//         &-image {
+//             img {  }
+//         }
+//     }
+
+//     // Blocks Modificators
+//     &--success &__item {
+//         &-title {
+//             // Ovverride rules
+//         }
+//     }
+
+//     // Inheritance (for components)
+//     .otherblock {
+//         // Ovverride rules
+//     }
+// }
+// 
+
+
+
+// Not block elems, but associated with it
+
+// .section-breadcrumbs {
+//     margin-bottom: -$breadcrumbsStrHeight;
+//     position: relative;
+//     z-index: $zindex_icon;
+// }
+.breadcrumbs-outer {
+
+}
+
+
+// Media rules - Mobile First, use min-width
+// @media ( min-width: $screen-sm-min ) {
+
+//     .blockname {
+//         // etc..
+//     }  
+// }
+
+// Default states
+.blockname {
+    display: none;
+}

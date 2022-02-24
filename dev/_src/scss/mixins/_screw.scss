@@ -1,0 +1,248 @@
+/*
+ * 1. pseudoelement_left_top()
+ * 2. pseudoelement_right_top()
+ * 3. flex()
+ * 4. width()
+ * 5. height()
+ * 6. image_center_cover
+ * 7. image_center_contain
+ * 8. text_overflow
+ * 9. bg_clip_text
+ * 10. text_vertical()
+ * 11. set_bg_adaptive
+ * 0.
+ */
+
+@mixin pseudoelement_left_top($value1, $value2){
+    content : "";
+    position : absolute; left : $value1; top : $value2; 
+}
+
+
+@mixin pseudoelement_right_top($value1, $value2){
+    content : "";
+    position : absolute; right : $value1; top : $value2; 
+}
+
+
+/*
+ * Display 'flex' - set justify and aligment,
+ * add set optionaly flex-direction and flex-wrap 
+ * Call: // flex(space-between, center);
+*/
+@mixin flex($justify, $align, $direction: row, $wrap: nowrap ) {
+
+    display: flex;
+    justify-content: $justify;
+    align-items: $align; 
+
+    flex-direction: $direction; 
+    flex-wrap: $wrap; 
+}
+
+
+/*
+ * Set width properties - set width, min-width and max-width
+ * Call: // width(auto, 200px, 100%);
+*/
+
+@mixin width ($width, $min_width: auto, $max_width: auto) {
+    width: $width;
+
+    @if ( $min_width != auto ) {
+        min-width: $min_width;
+    }
+    @if ( $max_width != auto ) {
+        max-width: $max_width;
+    }
+}
+
+/*
+ * Set height properties - set height, min-height adn max-height
+ * Call: // height(auto, 200px, 100%);
+*/
+
+@mixin height ($height, $min_height: auto, $max_height: auto) {
+    height: $height;
+
+    @if ( $min_height != auto ) {
+        min-height: $min_height;
+    }
+    @if ( $max_height != auto ) {
+        max-height: $max_height;
+    } 
+}
+
+
+/*
+ * Centered image in container like CSS cover
+ * Call: // image_center_cover();
+*/
+@mixin image_center_cover () {
+
+    width: auto;
+    max-width: none;
+    min-height: 100%;
+    min-width: 100%;
+    @include pseudoelement_left_top(50%, 50%);
+    transform: translate(-50%, -50%);
+}
+
+
+/*
+ * Centered image in container like CSS contain
+ * Call: // image_center_contain();
+*/
+@mixin image_center_contain () {
+
+    width: auto;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    @include pseudoelement_left_top(50%, 50%);
+    transform: translate(-50%, -50%);
+}
+
+
+/*
+ * Overflow text in element
+ * Call: // text_overflow();
+*/
+@mixin text_overflow() {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+/*
+ * Set background clip text
+ * Call: // bg_clip_text();
+*/
+@mixin  bg_clip_text() {
+
+    background-clip: text;
+    color: transparent; 
+    text-fill-color: transparent;
+}
+
+
+/*
+ * Set text wrigthing mode vertical, and align text
+ * Call: // text_vertical(center, '', ttb);
+*/
+
+// TODO: переделать через flex, чтобы добавить вертикальное позиционирование
+
+@mixin text_vertical ($position_x, $position_y: center, $direction: ttb) {
+
+    @if $position_x == left {
+        text-align: left;
+    }
+    @if $position_x == right {
+        text-align: right;
+    }
+    @if $position_x == center  {
+        text-align: center;
+    }
+
+    // @if position_y == true/false {
+        
+    // } @else if {
+        
+    // } @else {
+        
+    // }
+
+    vertical-align: middle;
+
+    .text-vertical {
+        vertical-align: bottom;
+
+        @if $direction == ttb {  // top to bottom
+            writing-mode: vertical-rl;
+            // transform: rotate(180deg);
+        }
+        @if $direction == btt {  // bottom to top
+            writing-mode: vertical-rl;
+            transform: rotate(180deg)
+        }        
+    }
+
+}
+
+
+/*
+ * Set adaptive bg-image
+ * Call: // set_bg_adaptive('../images/section-main-bg', (768, 1200), 'jpg');
+*/
+
+// v.2 image-768.jpg - is mean width 768 for small than 768px to 768px
+@mixin set_bg_adaptive (
+    $file_path, 
+    $breakpoints_list, 
+    $file_ext, 
+    $bg_color : #fff, 
+    $bg_pos : 0 0, 
+    $bg_repeat: no-repeat
+
+    ) {
+
+    // background: #fff url($file_path+'.'+$file_ext) 0 0 no-repeat;
+
+    background-color: $bg_color;
+    background-position: $bg_pos;
+    background-repeat: $bg_repeat;
+    // $bg_attachment: scroll,
+
+    // padding: length($breakpoints_list);
+    $quantity: length($breakpoints_list);
+
+
+    @for $i from 1 through length($breakpoints_list) {
+
+        $next_i: $i+1;
+
+        @if ( $i == 1 ) {
+
+            @media (max-width: 768px) {
+                // count: $i;
+                background-image: url($file_path+'-'+ nth($breakpoints_list, $i) +'.'+$file_ext);             
+            } 
+        }
+        @if ( ( $i > 1 ) and ($i <= length($breakpoints_list)) ) {
+
+            @media (min-width: nth($breakpoints_list, $i - 1)+px) and (max-width: nth($breakpoints_list, $i)+px) {
+                // count: $i;
+                background-image: url($file_path+'-'+ nth($breakpoints_list, $i) +'.'+$file_ext);             
+            }
+        }
+    }
+
+    @media (min-width: nth($breakpoints_list, $quantity)+px)  {
+
+        background-image: url($file_path+'.'+$file_ext);            
+    }     
+
+
+// 768.jpg  i=1   max
+// 1200.jpg i=2   min and max
+// 1440     i=3   min and max
+// .jpg     -     min
+    
+}
+
+
+// v. old - only 1 breakpoint min-width
+// 
+// @mixin set_bg_adaptive($file_path, $breakpoint_prefix, $file_ext) {
+
+//     background: #fff url($file_path+'.'+$file_ext) 0 0 no-repeat;
+
+    
+//     // @media (min-width: #{map-get($devices, 'ds_')}px) {
+//     @media (min-width: $breakpoint_prefix+px) {
+        
+//         background-image: url($file_path+'-'+$breakpoint_prefix+'.'+$file_ext);
+//     }      
+// }

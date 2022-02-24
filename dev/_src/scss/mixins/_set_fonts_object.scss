@@ -1,0 +1,55 @@
+// TODO: почему-то не работает код если его обернуть в миксин
+
+
+// make array $fonts from $devices and $font_size_names
+// array $fonts used in mixin font_size_pro() {
+
+// $fonts: ();
+
+// @mixin setFontsObject ($fonts) {
+
+    @each $fonts_device, $fonts_obj in $devices {
+
+        $font_size_names_for_device: ();
+        // Перебираем $font_size_names
+        @each $name in $font_size_names {
+            // $font_size_names_for_device: 
+                // map-set( $font_size_names_for_device, 'notice', 12 );
+
+            // $i: index($font_size_names, $name) - 1; // т.к. нужно начинать с 0
+            $i: index($font_size_names, $name) - $font_units_negative - 1; // т.к. нужно начинать с 0, и учитывать меньшие чем base
+            // $font_size_value: modular-scale($i, 1em, $major-seventh);
+            $font_size_value: modular-scale($i, map-get($fonts_obj, font_base), map-get($fonts_obj, ms_coeff));
+    // rem
+            // $font_size_value: rem(strip-unit($font_size_value), strip-unit(map-get($fonts_obj, font_base)));
+
+            $font_size_names_for_device: 
+                map-set( 
+                    $font_size_names_for_device, 
+                    $name, 
+                    // значение размера шрифта
+                    // map-get($fonts_obj, ms_coeff)
+                    $font_size_value
+                );           
+
+        } // each
+
+        
+        $fonts: map-set( 
+            $fonts,
+            $fonts_device,
+            $font_size_names_for_device
+        );
+
+        @debug map-get($font_size_names_for_device, large); // +
+        // @debug "Fonts array: #{$fonts}";
+        // @debug "font_size_names_for_device array: #{$font_size_names_for_device}";
+        // @debug "Fonts_old__: #{$fonts_old}";
+
+    }
+    
+// }    
+
+// @debug "Fonts array BEFORE: #{$fonts}";
+// @include setFontsObject($fonts);
+@debug "Fonts array AFTER: #{$fonts}";

@@ -1,0 +1,62 @@
+
+
+{% set page_title = 'Boilerplate-2020-Gulp-Nunjucks-SCSS' %}
+{% set page_h1 = 'About The Agency' %}
+{% set page_subtitle = 'Welcome to Lian' %}
+{% set page_heading_bg = 'images/page-about-bg.jpg' %}
+
+
+{% extends "layout/_layout.html" %}
+{#% extends "view/layout/_layout.html" %#}
+{#% extends "_src/view/layout/_layout.html" %#}
+
+{#% extends "layout/_layout.html" %#}
+{#% extends "view/layout/_layout.html" %#}
+{#% extends "_src/view/layout/_layout.html" %#}
+
+
+{% block page_heading %}
+
+
+
+
+
+    <section class="section section-team">
+        <div class="container">
+
+            <div class="row">
+                <div class="mv_12 centered">
+                    <h2 class="section__title">Awesome Team</h2>
+                    <div class="section__subtitle">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit.</div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </section>
+
+
+
+
+        <section class="section section-news">
+            <div class="container">
+
+                <div class="news row-flex">
+                    News block
+                </div>
+
+                {% include "blocks/news/_news.html" %}
+
+
+                <!-- <div class="news row-flex">
+
+                </div> -->
+
+
+            </div>
+        </section>    
+
+
+{% endblock %} 
