@@ -1,0 +1,6 @@
+
+
+add Components - tabs
+см. Real Estatee LP, 
+  перенести файлы,
+  сделать изменения в gulpfile.js - paths.watch.js, jsDev()

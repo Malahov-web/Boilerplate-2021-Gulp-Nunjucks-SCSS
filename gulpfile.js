@@ -86,7 +86,8 @@ const paths = {
         // 'styles': [ 'dev/_src/scss/**/*.scss', 'dev/_src/view/**/*.scss' ],
         'styles': [ 'dev/_src/scss/**/*.scss', 'dev/_src/view/**/*.' + styles.file_format +'' ],
         'html'  : ['dev/_src/*.html', 'dev/_src/view/**/*.html', 'dev/_src/data/**/*.json'],
-        'js'    : ['dev/_src/js/*.js']
+        // 'js'    : ['dev/_src/js/*.js']
+        'js'    : ['dev/_src/js/*.js', 'dev/_src/view/**/*.js'] // add components js files
     }, 
     // Файлы для разработки в Gulp, для браузера   
     dev: {
@@ -193,7 +194,10 @@ function jsDev (cb) {
     return src([ 
             js_jquery,
             // some_lib,
-            paths.src.js
+            // paths.src.js
+            // paths.watch.js // ! здесь м.б. только строка, не массив
+            'dev/_src/js/*.js',
+            'dev/_src/view/**/*.js'
         ])
 
         .pipe(concat('scripts.js'))
