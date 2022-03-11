@@ -1,4 +1,5 @@
-
+пт
+  Add: components - rating (0.5)
 
 чт
   Add: components - tabs, update gulpfile.js (1)  
