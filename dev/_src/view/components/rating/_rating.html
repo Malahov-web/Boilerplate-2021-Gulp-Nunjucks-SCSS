@@ -1,0 +1,31 @@
+<!-- v. actual, scalable in other projects -->
+
+{% macro field(name, value='', type='text') %}
+<div class="field">
+  <input type="{{ type }}" name="{{ name }}"
+         value="{{ value | escape }}" />
+</div>
+{% endmacro %}
+
+{% macro rating(rating_block_class, value='') %}
+<div class="{{ rating_block_class }} rating">
+    <ul>
+        {% for i in range(1, 6) -%}
+
+            {% set rating_star_class = 'on' %}
+            {% if i > value  %}
+                {% set rating_star_class = 'off' %}
+            {% endif %}
+
+            <li class="{{ rating_star_class }}" data-star-number="{{ i }}">
+                <!-- <i class="material-icons">star</i> -->
+                <svg class="icon" viewBox="0 0 32 32">
+                    <use xlink:href="../images/sprite.svg#star-filled"></use>
+                </svg> 
+            </li>
+
+        {%- endfor %} 
+
+    </ul>                                       
+</div>
+{% endmacro %}
