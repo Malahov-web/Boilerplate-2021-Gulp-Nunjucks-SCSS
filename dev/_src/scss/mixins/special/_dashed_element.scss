@@ -1,0 +1,49 @@
+@mixin dashed_element( $element_width: 100px, $width: 8px, $height: 4px, $pause_width : 8px) {
+
+
+/* 
+вычислить кол-во шагов
+пройтись циклом, добавить в массив значения      
+каждый шаг
+    добавлять в массив 4 точки
+    у каждой точки есть 2 координаты
+    каждая координата имеет коэфф-т - см. логику в css
+
+*/
+
+    $step_width: $width + $pause_width ;  // длина шага
+    $steps_number: $element_width / $step_width;    // кол-во шагов     
+    $steps_number : ceil($steps_number);
+    $coords_list: 0px 0,  $width 0,  $width $height, $width + $pause_width $height;
+    @debug $steps_number;
+
+    @for $i from 1 through $steps_number {
+
+        // добавить 4 точки
+        $x0: $i* ( $width + $pause_width);
+        $x1: $x0 + $width;
+        $x2: $x1 + $pause_width;
+        $y0: 0;
+        $y1: $height;
+
+        $coords_list: append($coords_list, $x0 $y0); //  +
+        $coords_list: append($coords_list, $x1 $y0); //  +
+        $coords_list: append($coords_list, $x1 $y1); //  +
+        $coords_list: append($coords_list, $x2 $y1); //  +
+
+    }
+
+    // last point
+    $coords_list: append($coords_list, 0 $height); 
+    // @debug $coords_list;
+
+
+    width: $element_width;
+    height: $height; 
+    clip-path:
+        polygon( $coords_list
+        )     
+    ;
+
+           
+}

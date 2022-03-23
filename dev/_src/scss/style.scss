@@ -26,7 +26,8 @@
 // @import 'print';     // print v styles
 
 $accent: #3c9;
-$accent: #9c3;
+// $accent: #9c3;
+// $accent: #3454d1;
 
 
 /* 1. General, structure
@@ -152,14 +153,59 @@ header {
 
 }
 
-.title,
-.logo {
-    // font-size: get_font_size();
-    background-color: #fff;
-    color: #000;
-    // color: $accent;
+// .title,
+// .logo {
+//     // font-size: get_font_size();
+//     background-color: #fff;
+//     color: #000;
+//     // color: $accent;
 
-    @include font_size_pro('h3');
+//     @include font_size_pro('h3');
 
-    // @extend %border_circle;
+//     // @extend %border_circle;
+// }
+
+
+
+/* 3. Footer
+ * **********************************************************************
+ *  
+*/
+
+.footer {
+
+}
+
+
+.footer {
+
+    &-top {
+    }
+
+    .container {
+ 
+    }
+}
+
+.copyrights {
+
+}
+
+
+.news {
+    .news__item {
+
+            &:after {
+                @include dashed_element( 100px, 8px, 4px, 10px); 
+
+
+                @include pseudoelement_left_top(100%, 50%);
+                transform: translate(-50%, -50%);
+                
+                background-color: $grey;
+                opacity: 0.5;
+
+                                   
+            }
+    }
 }
