@@ -1,0 +1,33 @@
+.menu-footer {
+   
+    @media (min-width: bp('ds_')+0px ) {
+        // @include v_rhytm('block', $l_h_base);
+    }    
+
+    &__title {
+        // @include v_rhytm('item', $l_h_base);
+    }
+
+    &__list {
+        @include flex(flex-start, flex-start);
+
+    }
+    &__item {
+        // @include font_size_pro('base');
+        // @include height_leveling('heading');
+        // @include typo('text');
+        margin-right: 24px;
+        margin-bottom: 12px;
+        a {
+            @include font_size_pro('base');
+            line-height: $l_h;
+            color: $white;
+
+            &:hover {
+                // @include color_scheme('dark-accent');
+                color: $accent;
+            }
+        }
+
+    }
+}

@@ -1,3 +1,13 @@
+вт 31.05
+  Add: components - hamburger (1)
+
+
+вт 23.03
+  Add: mixins - specials - dashed_element (0.5)
+--
+
+--
+
 пт
   Add: components - rating (0.5)
 
